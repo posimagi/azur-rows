@@ -20,10 +20,12 @@ types = ["Light Cruiser",
          "Monitor",
          "Repair Ship"]
 
-desktop = os.path.join(os.environ["HOMEPATH"], "Desktop")
-azur_dir = os.path.join(desktop, "AzurLane")
-names = [' '.join(f[:-4].split('_')) for f in os.listdir(azur_dir) if os.path.isfile(os.path.join(azur_dir, f))]
-paths = [os.path.join(azur_dir, f) for f in os.listdir(azur_dir) if os.path.isfile(os.path.join(azur_dir, f))]
+homepath = os.path.join(os.environ["HOMEPATH"])
+azur_dir = os.path.join(homepath, "AzurLane")
+names = [' '.join(f[:-4].split('_')) for f in os.listdir(azur_dir)
+         if os.path.isfile(os.path.join(azur_dir, f))]
+paths = [os.path.join(azur_dir, f) for f in os.listdir(azur_dir)
+         if os.path.isfile(os.path.join(azur_dir, f))]
 
 # Generate header line of CSV
 header = "Name"
@@ -46,4 +48,3 @@ for name, path in zip(names, paths):
     for stat in stats:
         result += ',' + values[stat]
     print(result)
-

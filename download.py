@@ -5,8 +5,8 @@ import requests
 ships = ["San Diego", "Hood"]
 # === DO NOT EDIT BELOW THIS LINE ===
 
-desktop = os.path.join(os.environ["HOMEPATH"], "Desktop")
-azur_dir = os.path.join(desktop, "AzurLane")
+homepath = os.path.join(os.environ["HOMEPATH"])
+azur_dir = os.path.join(homepath, "AzurLane")
 if not os.path.exists(azur_dir):
     os.mkdir(azur_dir)
 
@@ -16,7 +16,8 @@ for ship in ships:
 pages = []
 
 for ship in ship_s:
-    pages.append("https://azurlane.koumakan.jp/w/index.php?title=" + ship + "&action=edit")
+    pages.append(
+        "https://azurlane.koumakan.jp/w/index.php?title=" + ship + "&action=edit")
 
 for ship, page in zip(ship_s, pages):
     r = requests.get(page)
