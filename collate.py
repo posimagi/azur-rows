@@ -1,5 +1,15 @@
 import os
 
+# === CHANGE ME: Add additional stats here, ===
+#     in the form of the MediaWiki variables
+#     found on the edit pages for each ship
+#     (e.g. https://azurlane.koumakan.jp/w/index.php?title=Hood&action=edit)
+stats = ["HealthMax",
+         "AAMax",
+         "Nationality",
+         "Type"]
+# === DO NOT EDIT BELOW THIS LINE ===
+
 types = ["Light Cruiser",
          "Heavy Cruiser",
          "Battlecruiser",
@@ -9,10 +19,6 @@ types = ["Light Cruiser",
          "Destroyer",
          "Monitor",
          "Repair Ship"]
-stats = ["HealthMax",
-         "AAMax",
-         "Nationality",
-         "Type"]
 
 desktop = os.path.join(os.environ["HOMEPATH"], "Desktop")
 azur_dir = os.path.join(desktop, "AzurLane")

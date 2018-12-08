@@ -1,7 +1,9 @@
 import os
 import requests
 
-ships = ["San Diego", "Hood"]  # CHANGE ME (and only me)
+# === CHANGE ME: Add ship names here to scrap more info ===
+ships = ["San Diego", "Hood"]
+# === DO NOT EDIT BELOW THIS LINE ===
 
 desktop = os.path.join(os.environ["HOMEPATH"], "Desktop")
 azur_dir = os.path.join(desktop, "AzurLane")
