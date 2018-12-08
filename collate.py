@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 # === CHANGE ME: Add additional stats here, ===
 #     in the form of the MediaWiki variables
@@ -20,8 +21,8 @@ types = ["Light Cruiser",
          "Monitor",
          "Repair Ship"]
 
-homepath = os.path.join(os.environ["HOMEPATH"])
-azur_dir = os.path.join(homepath, "AzurLane")
+homedir = str(Path.home())
+azur_dir = os.path.join(homedir, "AzurLane")
 names = [' '.join(f[:-4].split('_')) for f in os.listdir(azur_dir)
          if os.path.isfile(os.path.join(azur_dir, f))]
 paths = [os.path.join(azur_dir, f) for f in os.listdir(azur_dir)

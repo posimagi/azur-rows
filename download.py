@@ -1,12 +1,13 @@
 import os
+from pathlib import Path
 import requests
 
 # === CHANGE ME: Add ship names here to scrap more info ===
 ships = ["San Diego", "Hood"]
 # === DO NOT EDIT BELOW THIS LINE ===
 
-homepath = os.path.join(os.environ["HOMEPATH"])
-azur_dir = os.path.join(homepath, "AzurLane")
+homedir = str(Path.home())
+azur_dir = os.path.join(homedir, "AzurLane")
 if not os.path.exists(azur_dir):
     os.mkdir(azur_dir)
 
