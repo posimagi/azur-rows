@@ -15,8 +15,8 @@ if not os.path.exists(ship_files_dir):
     os.mkdir(ship_files_dir)
 
 for ship in ships:
-    print("Downloading file for " + ship + "...")
     # Use get request to download from the wiki
+    print("Downloading file for " + ship + "...")
     try:
         page = requests.get("https://azurlane.koumakan.jp/w/index.php?title=" + ship + "&action=edit")
     except:
