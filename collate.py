@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import csv
 
 # === CHANGE ME: Add additional stats here, ===
 #     in the form of the MediaWiki variables
@@ -21,12 +22,12 @@ types = ["Light Cruiser",
          "Monitor",
          "Repair Ship"]
 
-homedir = str(Path.home())
-azur_dir = os.path.join(homedir, "AzurLane")
-names = [' '.join(f[:-4].split('_')) for f in os.listdir(azur_dir)
-         if os.path.isfile(os.path.join(azur_dir, f))]
-paths = [os.path.join(azur_dir, f) for f in os.listdir(azur_dir)
-         if os.path.isfile(os.path.join(azur_dir, f))]
+working_dir = os.getcwd()
+ship_files_dir = os.path.join(working_dir, "ShipFiles")
+names = [' '.join(f[:-4].split('_')) for f in os.listdir(ship_files_dir)
+         if os.path.isfile(os.path.join(ship_files_dir, f))]
+paths = [os.path.join(ship_files_dir, f) for f in os.listdir(ship_files_dir)
+         if os.path.isfile(os.path.join(ship_files_dir, f))]
 
 # Generate header line of CSV
 header = "Name"
