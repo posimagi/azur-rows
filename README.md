@@ -18,15 +18,15 @@ Once those have been modified to your liking, run the `download.py` file. Wait f
 
 ### Troubleshooting
 
-#### "The file size for <ship> is abnormal."
+#### "The file size for `ship` is abnormal."
 
 This usually means that someone's named was spelled incorrectly, or spaces were being used instead of underscores. This is just being used as a catch/warning - if the second part of the script works as intended, then you're probably fine.
 
-#### "There was an invalid <stat> found on <ship>'s page."
+#### "There was an invalid `stat` found on `ship`'s page."
 
 This is due to improper santization, still a work in progress. This usually happens in Type (Battlecruiser, Destroyer, etc.) detection when the script finds something else mentioning type. This currently doesn't cause any problems with the CSV data, but more as a warning.
 Please also verify that there are **no other files in the ShipFiles directory aside from the .txt files that the downloader creates!**
 
-#### "We can't find <stat> in the page for <ship>."
+#### "We can't find `stat` in the page for `ship`."
 
 If this is the only ship this is happening on, please verify the spelling of the ship. If this is happening on all ships, please verify the spelling of the stat on the wiki page's source. Please also verify that there are **no other files in the ShipFiles directory aside from the .txt files that the downloader creates!**
