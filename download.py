@@ -12,18 +12,8 @@ print("Setting download path to " + ship_files_dir + ".")
 if not os.path.exists(ship_files_dir):
     os.mkdir(ship_files_dir)
 
-ship_s = []
 for ship in ships:
-    ship_s.append('_'.join(ship.split()))
-pages = []
-
-for ship in ship_s:
-    print(ship + " added to the list!")
-    pages.append(
-        "https://azurlane.koumakan.jp/w/index.php?title=" + ship + "&action=edit")
-
-for ship, page in zip(ship_s, pages):
-    r = requests.get(page)
+    r = requests.get("https://azurlane.koumakan.jp/w/index.php?title=" + ship + "&action=edit")
     ship_file = ship + ".txt"
     print("Downloading file for " + ship + "...")
     outfile = os.path.join(ship_files_dir, ship_file)
