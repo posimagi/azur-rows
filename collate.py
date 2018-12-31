@@ -31,6 +31,7 @@ for stat in stats:
 
 print("Generating CSV at " + working_dir + ".")
 
+# Creating the CSV (NOTE THE `w` - This erases the existing CSV if there.)
 with open("Compilation.csv", 'w', newline='') as ship_csv:
     ship_csv.write(header)
     ship_csv.write('\n')
