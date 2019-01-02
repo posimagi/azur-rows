@@ -34,7 +34,11 @@ for ship in ships:
         print("Unable to find the proper ship data class for " + ship + ". Verify the spelling is correct and that the page itself exists.")
         continue
 
+    # Stripping leading whitespace and pipes
+    result_list = result.split('\n')
+    stripped = [line.lstrip(' |') for line in result_list]
+
     ship_file = ship + ".txt"
     outfile = os.path.join(ship_files_dir, ship_file)
-    with open(outfile, 'a', encoding='utf-8') as shipdata:
-        shipdata.write(result)
+    with open(outfile, 'w', encoding='utf-8') as shipdata:
+        shipdata.write('\n'.join(stripped))
