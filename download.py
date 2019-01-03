@@ -1,7 +1,11 @@
 import os
 from pathlib import Path
-import requests
 import re
+try:
+    import requests
+except ModuleNotFoundError:
+    print("You will need to install the requests library to continue. You may install it using Pip.")
+
 
 # Importing data from the ShipList txt file.
 with open("ShipList.txt", "r") as ShipList:
