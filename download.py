@@ -42,11 +42,17 @@ for ship in ships:
               ". Verify the spelling is correct and that the page itself exists.")
         continue
 
-    # Stripping leading whitespace and pipes
+    # Stripping leading whitespace, pipes, and erroneous whitespace surrounding equal signs
     result_list = result.split('\n')
-    stripped = [line.lstrip(' |') for line in result_list]
 
+    formatted_data = []
+    for line in result_list:
+        line = line.lstrip(' |')
+        line = re.sub(' ?= ?','=',line)
+        formatted_data.append(line)
+
+    # Writing the file.
     ship_file = ship + ".txt"
     outfile = os.path.join(ship_files_dir, ship_file)
     with open(outfile, 'w', encoding='utf-8') as shipdata:
-        shipdata.write('\n'.join(stripped))
+        shipdata.write('\n'.join(formatted_data))
