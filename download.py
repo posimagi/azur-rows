@@ -30,7 +30,7 @@ for ship in ships:
         break
     print("Sanitizing data...")
 
-    # Magical regex to extract only the relevant data from the ShipMain class rather than all of the other unecessary HTML data.
+    # Regex to isolate/export only the relevant ShipMain info.
     filtered_data = re.search('{{ShipMain(.|\n)*}}\n', page.text)
 
     # re.search returns data in groups, group 0 has the info we need.
