@@ -1,21 +1,9 @@
 import os
 from pathlib import Path
-import csv
+import re
 
 with open("StatList.txt", "r") as StatList:
     stats = StatList.read().splitlines()
-
-# === DO NOT EDIT BELOW THIS LINE ===
-
-types = ["Light Cruiser",
-         "Heavy Cruiser",
-         "Battlecruiser",
-         "Battleship",
-         "Light Aircraft Carrier",
-         "Aircraft Carrier",
-         "Destroyer",
-         "Monitor",
-         "Repair Ship"]
 
 working_dir = os.getcwd()
 ship_files_dir = os.path.join(working_dir, "ShipFiles")
@@ -24,38 +12,40 @@ names = [' '.join(f[:-4].split('_')) for f in os.listdir(ship_files_dir)
 paths = [os.path.join(ship_files_dir, f) for f in os.listdir(ship_files_dir)
          if os.path.isfile(os.path.join(ship_files_dir, f))]
 
-# Generate header line of CSV
+# Preparing header and initializing rows array
 header = "Name"
 for stat in stats:
     header += "," + str(stat)
+rows = [header]
 
-print("Generating CSV at " + working_dir + ".")
-
-# Creating the CSV (NOTE THE `w` - This erases the existing CSV if there.)
-with open("Compilation.csv", 'w', newline='') as ship_csv:
-    ship_csv.write(header)
-    ship_csv.write('\n')
-
-# Generate a row for each file
-for name, path in zip(names, paths):
+# Extracts the defined stat from the ship file via regex then adds to rows[]
+for name, text_file in zip(names, paths):
     values = {}
-    with open(path, 'rb') as body:
-        for line in body:
-            for index, stat in enumerate(stats):
-                if stat in str(line):
-                    try:
-                        value = line.decode('utf-8').split('=')[1].strip()
-                    except IndexError:
-                        print("There was an invalid " + stat + " found on " + name + "'s page. Feel free to ignore, or see the readme.")
-                    except KeyError:
-                        print("We can't find " + stat + "in the page for " + name + ". Please see the readme.")
-                    if stat == "Type" and value not in types:
-                        continue
-                    values[stat] = value
     result = name
-    with open("Compilation.csv", 'a', newline='') as ship_csv:
+    with open(text_file, 'r', encoding='utf-8') as ship_file:
+        ship_data = ship_file.read()
+        print("===============================================")
+        print("Extracting data for " + name + ".")
         for stat in stats:
+            print("Searching for " + stat + ".")
+            regex = re.search('(?<=\n'+stat+'=)(.*)', ship_data)
+            try:
+                values[stat] = regex.group(0)
+                print(stat + " has been set to " + values[stat] + ".")
+            except AttributeError:
+                print("We can't find a " + stat + " for " + name +
+                      ". Please confirm that the stat you're looking for " + 
+                      "is properly spelled/capitalized according to the readme.")
+                values[stat] = "Not found"
             result += ',' + values[stat]
-        ship_csv.write(result)
+        rows.append(result)
+        print(name + "'s data prepared.")
+    
+# Takes data from rows[] and writes it to CSV
+with open("Compilation.csv", 'w', newline='') as ship_csv:
+    for row in rows:
+        ship_csv.write(row)
         ship_csv.write('\n')
-        print("Row added for " + name + ".")
+        name = row.split(',')[0]
+    print("===============================================")
+    print("Data written to " + working_dir + " as Compilation.csv")
