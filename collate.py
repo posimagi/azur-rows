@@ -14,7 +14,7 @@ def extract(name, text_file, stats, values, rows):
             print("Searching for " + stat + ".")
             regex = re.search('(?<=\n'+stat+'=)(.*)', ship_data)
             try:
-                values[stat] = regex.group(0)
+                values[stat] = regex.group(0).strip()
                 if stat == "Remodel" and values[stat] != "1":
                     values[stat] = "0"
                 print(stat + " has been set to " + values[stat] + ".")
