@@ -27,7 +27,7 @@ Wait for it to complete, then run `collate.py`.
 This will create a CSV file in your working directory, 
 to which you can then import into whatever spreadsheet software you prefer.
 
-**Note that the delimiter used by default is a pipe ( | ), so you will need to modify
+**Note that the delimiter used by default is a pipe (`|`)**, so you will need to modify
 your spreadsheet software's settings to accomodate for this. 
 You can change the delimiter within the `collate.py` file near the top, 
 but do NOT use commas as your delimiter if you are downloading 
@@ -41,12 +41,14 @@ any Skill descriptions, as those include commas and will get delimited.
 
 Pretty self-explanatory, the instructions for this depend on what OS you're running this on. 
 If you're on Windows, try looking at 
-https://stackoverflow.com/questions/30536946/how-to-install-requests-module-in-python-3-4-version-on-windows
+https://stackoverflow.com/questions/30536946/how-to-install-requests-module-in-python-3-4-version-on-windows.
+
 On MacOS/Linux, you should be able to just run `pip install requests`, but no guarantees.
 
 ##### "Unable to access the website..."
 
 Downloading _typically_ requires internet access, but that could also be just me.
+
 Confirm you don't have any firewalls/AV blocking the Python binary and/or the script itself.
 
 ##### "Unable to find the proper ship data class..."
