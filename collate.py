@@ -5,8 +5,9 @@ import re
 with open("StatList.txt", "r") as StatList:
     stats = StatList.read().splitlines()
 
-working_dir = os.getcwd()
 delimiter = "|"
+
+working_dir = os.getcwd()
 ship_files_dir = os.path.join(working_dir, "ShipFiles")
 names = [' '.join(f[:-4].split('_')) for f in os.listdir(ship_files_dir)
          if os.path.isfile(os.path.join(ship_files_dir, f))]
