@@ -33,6 +33,8 @@ for name, text_file in zip(names, paths):
             regex = re.search('(?<=\n'+stat+'=)(.*)', ship_data)
             try:
                 values[stat] = regex.group(0)
+                if stat == "Remodel" and values[stat] != "1":
+                    values[stat] = "0"
                 print(stat + " has been set to " + values[stat] + ".")
             except AttributeError:
                 print("We can't find a " + stat + " for " + name +
