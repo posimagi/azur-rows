@@ -6,6 +6,7 @@ with open("StatList.txt", "r") as StatList:
     stats = StatList.read().splitlines()
 
 working_dir = os.getcwd()
+delimiter = "|"
 ship_files_dir = os.path.join(working_dir, "ShipFiles")
 names = [' '.join(f[:-4].split('_')) for f in os.listdir(ship_files_dir)
          if os.path.isfile(os.path.join(ship_files_dir, f))]
@@ -15,7 +16,7 @@ paths = [os.path.join(ship_files_dir, f) for f in os.listdir(ship_files_dir)
 # Preparing header and initializing rows array
 header = "Name"
 for stat in stats:
-    header += "," + str(stat)
+    header += delimiter + str(stat)
 rows = [header]
 
 # Extracts the defined stat from the ship file via regex then adds to rows[]
@@ -37,15 +38,15 @@ for name, text_file in zip(names, paths):
                       ". Please confirm that the stat you're looking for " + 
                       "is properly spelled/capitalized according to the readme.")
                 values[stat] = "Not found"
-            result += ',' + values[stat]
+            result += delimiter + values[stat]
         rows.append(result)
         print(name + "'s data prepared.")
     
 # Takes data from rows[] and writes it to CSV
-with open("Compilation.csv", 'w', newline='') as ship_csv:
+with open("Compilation.csv", 'w', newline='', encoding='utf-8') as ship_csv:
     for row in rows:
         ship_csv.write(row)
         ship_csv.write('\n')
-        name = row.split(',')[0]
+        name = row.split(delimiter)[0]
     print("===============================================")
     print("Data written to " + working_dir + " as Compilation.csv")
